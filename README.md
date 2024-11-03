@@ -1,5 +1,5 @@
 # docker-netlogger-rpi
-Netlogger in a container running a Raspberrypi
+Netlogger in a docker container running on a Raspberrypi
 
 You will need to download the linux tarball from the netlogger site:
 https://www.netlogger.org/

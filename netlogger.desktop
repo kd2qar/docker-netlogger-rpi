@@ -1,0 +1,8 @@
+[Desktop Entry]
+Categories=HamRadio;Network;
+Comment=Ham Radio utility for participating in a net
+Exec=/docker/netlogger/netlogger
+Name=NetLogger
+Icon=netlogger
+Type=Application
+

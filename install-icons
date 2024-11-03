@@ -1,0 +1,7 @@
+#!/bin/bash
+## COPY ICONS AND DESKTOP FILE
+sudo cp netlogger_icons/128x128/netlogger.png /usr/share/icons/hicolor/128x128/apps/netlogger.png
+sudo cp netlogger_icons/48x48/netlogger.png /usr/share/icons/hicolor/48x48/apps/netlogger.png
+sudo cp netlogger_icons/512x512/netlogger.png /usr/share/icons/hicolor/512x512/apps/netlogger.png
+sudo cp netlogger.desktop /usr/share/applications/netlogger.desktop
+sudo gtk-update-icon-cache -f -t /usr/share/icons/hicolor

@@ -1,0 +1,11 @@
+REAADME.md
+LICENSE
+[Ii][Gg][Nn][Oo][Rr][Ee]
+.git
+.gitignore
+*.txt
+Dockerfile
+Makefile
+netlogger_icons.tar.gz
+box64.box64rc
+install-icons

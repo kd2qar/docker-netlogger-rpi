@@ -1,0 +1,23 @@
+#!/bin/sh
+#BOX64_DUMP with 0/1 to dump elf infos
+#export BOX64_DUMP=1
+
+#BOX64_LOG with 0/1/2/3 or NONE/INFO/DEBUG/DUMP to set the printed debug info (level 3 is level 2 + BOX64_DUMP)
+export BOX64_LOG=1
+
+#export QT_GRAPHICSSYSTEM="native"
+#export QT_GRAPHICSSYSTEM=raster
+
+#BOX64_EMULATED_LIBS=libqjpeg.so:libqgif.so
+
+## REQUIRED TO RUN NETLOGGER
+export BOX64_PREFER_EMULATED=1
+
+export NETLOGGER_QT_PLUGINS_PATH="/usr/local/share/netlogger/plugins" 
+export LD_LIBRARY_PATH="/usr/local/share/netlogger/lib" 
+#export LD_LIBRARY_PATH="/usr/lib/aarch64-linux-gnu:/usr/lib/arm-linux-gnueabihf:/usr/local/share/netlogger/lib"
+
+box64 "/usr/local/share/netlogger/netlogger" 
+
+#2>/dev/null
+

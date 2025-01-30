@@ -24,19 +24,17 @@ COPY NetLogger*.tgz /root/
 
 WORKDIR /root/
 
-RUN tar xzvf NetLogger*.tgz
-
-RUN echo "/usr/local/share/netlogger">input.txt
-RUN echo "/usr/local/bin">>input.txt
-RUN cat input.txt | ./install 
+RUN tar xzf NetLogger*.tgz && \
+    echo "/usr/local/share/netlogger">input.txt && \
+    echo "/usr/local/bin">>input.txt && \
+    cat input.txt | ./install 
 
 RUN apt-get update &&\
 	apt-get install -y libqt5core5a libqt5dbus5 libqt5gui5 libqt5widgets5 && \
-	rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && \ 
 	apt-get install -y -m libwxgtk3.0-gtk3-dev || (apt-get install -y -m libwxgtk3.0-dev) || apt-get install -y -m libwxgtk3.2-dev && \
+    apt-get update && apt-get -y install firefox-esr && \
 	rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get -y install firefox-esr && rm -rf  /var/lib/apt/lists/*
 
 COPY netlogger_icons/128x128/netlogger.png /usr/share/icons/hicolor/128x128/apps/netlogger.png
 COPY netlogger_icons/48x48/netlogger.png /usr/share/icons/hicolor/48x48/apps/netlogger.png

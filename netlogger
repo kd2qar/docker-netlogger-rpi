@@ -14,16 +14,16 @@ CAPABILITIES="--cap-add=SYS_ADMIN"
 
 ENV_VARS="--env=USER_UID=$(id -u) --env=USER_GID=$(id -g) --env=DISPLAY --env=XAUTHORITY=${XAUTH}"
 
-VXSOCK="--mount type=bind,source=/tmp/.X11-unix,target=/tmp/.X11-unix,readonly"
-VPULSE="--mount type=bind,source=/run/user/$(id -u)/pulse,target=/run/pulse"
-VINPUT="--mount type=bind,source=/dev/input,target=/dev/input"
-VTTY="--mount type=bind,source=/dev/tty,target=/dev/tty"
-VFB="--mount type=bind,source=/dev/fb0,target=/dev/fb0"
-VGPIO="--mount type=bind,source=/dev/gpiomem,target=/dev/gpiomem --volume=/dev/gpiochip0:/dev/gpiochip0 --volume=/dev/gpiochip1:/dev/gpiochip1 --volume=/dev/gpiochip2:/dev/gpiochip2 --volume=/dev/gpiochip3:/dev/gpiochip3"
-
-VPULSE="--volume /tmp/.X11-unix:/tmp/.X11-unix --volume /dev/shm:/dev/shm --volume /etc/machine-id:/etc/machine-id --volume /run/user/1000/pulse:/run/user/1000/pulse --volume /var/lib/dbus:/var/lib/dbus"
-
-VOLUMES="${VXSOCK}"
+#VXSOCK="--mount type=bind,source=/tmp/.X11-unix,target=/tmp/.X11-unix,readonly"
+#VPULSE="--mount type=bind,source=/run/user/$(id -u)/pulse,target=/run/pulse"
+#VINPUT="--mount type=bind,source=/dev/input,target=/dev/input"
+#VTTY="--mount type=bind,source=/dev/tty,target=/dev/tty"
+#VFB="--mount type=bind,source=/dev/fb0,target=/dev/fb0"
+#VGPIO="--mount type=bind,source=/dev/gpiomem,target=/dev/gpiomem --volume=/dev/gpiochip0:/dev/gpiochip0 --volume=/dev/gpiochip1:/dev/gpiochip1 --volume=/dev/gpiochip2:/dev/gpiochip2 --volume=/dev/gpiochip3:/dev/gpiochip3"
+#VPULSE="--volume /tmp/.X11-unix:/tmp/.X11-unix --volume /dev/shm:/dev/shm --volume /etc/machine-id:/etc/machine-id --volume /run/user/1000/pulse:/run/user/1000/pulse --volume /var/lib/dbus:/var/lib/dbus"
+#FIREFOX="--mount type=bind,source=/srv/netlogger/dot.mozilla,target=/home/$(whoami)/.mozilla"
+#CHROMIUM="--mount type=bind,source=/srv/netlogger/.config/chromium,target=/home/$(whoami)/.config/chromium"
+#VOLUMES="${VXSOCK}"
 #VOLUMES="${VXSOCK} --mount type=bind,source=/var/lib/dbus,target=/var/lib/dbus,readonly --mount type=bind,source=/etc/machine-id,target=/etc/machine-id "
 
 DATE="$(date +%G%m%d%H%M)"
@@ -36,8 +36,10 @@ WORKDIR="--workdir=/home/$(whoami)/"
 
 LOG="--log-driver json-file --log-opt max-size=5m --log-opt max-file=1"
 
+VOLUMES="--mount type=bind,source=/tmp/.X11-unix,target=/tmp/.X11-unix" #,readonly"
 IPC="--ipc host" #  This is what fixed the "black menus/dialogs"
 
 docker run -t --rm ${IPC} --privileged ${WORKDIR} ${USER} ${HOMEDIR} ${USERFILES} ${ENV_VARS} ${CAPABILITIES} ${VOLUMES} --hostname ${HOSTNAME}  --name "${NAME}_run" --entrypoint /bin/bash ${TAG} \
 		 -c "/netlogger/nlbox"
+
 
